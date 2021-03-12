@@ -8,9 +8,6 @@ const PetForm = (props) => {
     const [petBreed, setPetBreed] = useState("")
 
 
-
-
-
     return (
         <>
             <div className="jumbotron">
@@ -21,23 +18,28 @@ const PetForm = (props) => {
                 <div className="form-group">
                     <label htmlFor="">Pet Name</label>
                     <input className="form-control" type="text" name="petName" id="" onChange={(e)=>setPetName(e.target.value)}/>
+                    {petName.length<3 && petName.length >0? <p className = 'text-danger'>Pet name must be at least 3 characters long</p>: null}
+                    
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Age</label>
                     <input className="form-control" type="number" name="petAge" id="" onChange={(e)=>setPetAge(e.target.value)}/>
+                    {petAge <0 ? <p className = 'text-danger'>Pet must have a real age.</p>: null}
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Type</label>
                     <select className="custom-select" name = "petType" onChange= {(e)=>setPetType(e.target.value)}>
-                        <option selected>Open this select menu</option>
+                        <option value = "" selected>Open this select menu</option>
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
                         <option value="hamster">Hamster</option>
                     </select>
+                    {petType.length==0 ? <p className = 'text-danger'>Please select a pet type</p>: null}
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Breed</label>
                     <input className="form-control" type="text" name="petBreed" id="" onChange= {(e)=>setPetBreed(e.target.value)}/>
+                    {petBreed.length<3 ? <p className = 'text-danger'>Pet breed must be at least 3 characters long</p>: null}
                 </div>
                 <button type="submit" className="btn btn-success">Add Pet</button>
 
